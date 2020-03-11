@@ -12,6 +12,7 @@
 /build
 
 # misc
+.replit
 .DS_Store
 .env
 .env.local
