@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 const Home = props => {
   const [profile, setProfile] = useState(null);
   const { isAuthenticated, login } = props.auth;
-
+  const authenticated = isAuthenticated();
   const loadprofile = () => {
     props.auth.getProfile((profile, err) => {
       setProfile(profile);
     });
   };
   let username = profile ? profile.name : "";
-  if (isAuthenticated()) {
+  if (authenticated) {
     if (username === "") {
       loadprofile();
       if (profile) username = profile.name;
@@ -20,13 +20,13 @@ const Home = props => {
   return (
     <div className="container">
       <div className="text-center header headerresult">
-        {!isAuthenticated() ? (
+        {!authenticated ? (
           <h5>Please login to use the Budget Calculator</h5>
         ) : (
           <h5>{`Welcome! ${username}`}</h5>
         )}
       </div>
-      {isAuthenticated() ? (
+      {authenticated ? (
         <div className="text-center output">
           <Link to="/budget">
             <button className="btn buttoncolor">

@@ -41,7 +41,7 @@ const Budget = () => {
           saving: saving
         });
       } else {
-        setValues({ ...value, percent: value });
+        setValues({ ...values, percent: value });
       }
     }
   };
