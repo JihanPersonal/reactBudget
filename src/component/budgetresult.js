@@ -7,7 +7,9 @@ const BudgetResult = props => {
     <>
       <div className="container">
         <div className="text-center header headerresult">
-          <Typography center>Expense Result</Typography>
+          <Typography
+            center
+          >{`${props.username}! Here is your Result`}</Typography>
         </div>
         <div className="output">
           <FormControl fullWidth>
@@ -52,7 +54,7 @@ const BudgetResult = props => {
         <div className="text-right output">
           <button
             type="button"
-            class="btn buttoncolor"
+            className="btn buttoncolor"
             onClick={props.handleback}
           >
             Back to Calculator

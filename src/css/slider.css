@@ -25,7 +25,7 @@
 .loginbutton {
   width: 50%;
 }
-.buttoncolor:hover {
+.buttonhover:hover {
   color: black;
   background-color: #9ba7f0;
 }

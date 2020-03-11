@@ -1,29 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 const Home = props => {
-  const [profile, setProfile] = useState(null);
-  const { isAuthenticated, login } = props.auth;
+  //#region Authentication Method
+  const { isAuthenticated, login, getProfile } = props.auth;
   const authenticated = isAuthenticated();
-  const loadprofile = () => {
-    props.auth.getProfile((profile, err) => {
-      setProfile(profile);
-    });
-  };
-  let username = profile ? profile.name : "";
+  //after authentication, get the username to App
   if (authenticated) {
-    if (username === "") {
-      loadprofile();
-      if (profile) username = profile.name;
+    if (props.username === "") {
+      getProfile((profile, err) => {
+        props.setProfile(profile);
+      });
     }
   }
+  //#endregion
 
   return (
     <div className="container">
       <div className="text-center header headerresult">
         {!authenticated ? (
-          <h5>Please login to use the Budget Calculator</h5>
+          <h5>Please login first to use the Budget Calculator</h5>
         ) : (
-          <h5>{`Welcome! ${username}`}</h5>
+          <h5>{`Welcome! ${props.username}`}</h5>
         )}
       </div>
       {authenticated ? (

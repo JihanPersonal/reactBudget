@@ -1,3 +1,4 @@
+/*ul styles*/
 ul.unstyled {
   list-style-type: none;
   margin: 0;
@@ -16,14 +17,6 @@ nav ul {
 nav li {
   float: left;
 }
-.licenter {
-  padding-top: 14px;
-  color: white;
-  float: center;
-}
-.liright {
-  float: right;
-}
 nav li a {
   display: block;
   color: white;
@@ -39,7 +32,22 @@ nav li a:hover {
 nav button {
   margin-top: 5px;
 }
+
+/*Style for Login buttons*/
 .login {
   background-color: #086fd4;
+  color: white;
+}
+.login:hover {
+  background-color: #e3f2fd;
+}
+.liright {
+  float: right;
+}
+
+/*Style for greetings*/
+.greetings {
+  padding-top: 14px;
+  padding-right: 20px;
   color: white;
 }

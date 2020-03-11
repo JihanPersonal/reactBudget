@@ -1,22 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "../css/navbar.css";
 const Nav = props => {
   const { isAuthenticated, login, logout } = props.auth;
   const authenticated = isAuthenticated();
-  const [profile, setProfile] = useState(null);
-  const loadprofile = () => {
-    props.auth.getProfile((profile, err) => {
-      setProfile(profile);
-    });
-  };
-  let username = profile ? profile.name : "";
-  if (authenticated) {
-    if (username === "") {
-      loadprofile();
-      if (profile) username = profile.name;
-    }
-  }
   return (
     <nav>
       <ul>
@@ -25,9 +12,6 @@ const Nav = props => {
         </li>
         <li>
           <Link to="/budget">Budget</Link>
-        </li>
-        <li className="licenter">
-          {authenticated ? <p>{`Welcome! ${username}`}</p> : null}
         </li>
         <li className="liright">
           {authenticated ? (
@@ -39,6 +23,9 @@ const Nav = props => {
               Log in
             </button>
           )}
+        </li>
+        <li className="liright greetings">
+          {authenticated ? <p>{`Welcome! ${props.username}`}</p> : null}
         </li>
       </ul>
     </nav>

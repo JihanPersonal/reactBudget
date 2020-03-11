@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import BudgetCalculator from "./budgetcalculator";
 import BudgetResult from "./budgetresult";
-const Budget = () => {
+const Budget = props => {
   //#region Use State
   const [values, setValues] = useState({
     salary: "",
@@ -55,7 +55,11 @@ const Budget = () => {
   //#endregion
 
   return donestatus ? (
-    <BudgetResult initialvalues={values} handleback={handleback} />
+    <BudgetResult
+      initialvalues={values}
+      username={props.username}
+      handleback={handleback}
+    />
   ) : (
     <BudgetCalculator
       initialvalues={values}
