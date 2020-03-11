@@ -54,6 +54,19 @@ const Budget = props => {
   };
   //#endregion
 
+  //#region Reget Username if somehow budget page lost username
+  const { isAuthenticated, getProfile } = props.auth;
+  const authenticated = isAuthenticated();
+  //after authentication, get the username to App
+  if (authenticated) {
+    if (props.username === "") {
+      getProfile((profile, err) => {
+        props.setProfile(profile);
+      });
+    }
+  }
+  //#endregion
+
   return donestatus ? (
     <BudgetResult
       initialvalues={values}

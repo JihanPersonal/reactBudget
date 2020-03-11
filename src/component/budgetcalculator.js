@@ -63,6 +63,7 @@ const BudgetCalculator = props => {
           <FormControl fullWidth>
             <TextField
               id="outlined-basic"
+              center="true"
               label="Saving"
               value={"$ " + values.saving}
               variant="outlined"
