@@ -35,7 +35,7 @@ const Home = props => {
       ) : (
         <div className="text-center gotobudget">
           <button className="btn buttoncolor loginbutton" onClick={login}>
-            Login
+            Login >
           </button>
         </div>
       )}

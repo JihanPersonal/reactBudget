@@ -12,7 +12,21 @@ function App(props) {
 
   const [profile, setProfile] = useState(null);
 
-  let username = profile ? profile.given_name : "";
+  let username = "";
+  const setusername = () => {
+    if (profile) {
+      if (profile.given_name) username = profile.given_name;
+      else if (profile.nickname) username = profile.nickname;
+      else if (profile.name) username = profile.name;
+    }
+  };
+  if (username === "") {
+    setusername();
+  }
+
+  console.log("username");
+  console.log(username);
+  console.log("profile");
   console.log(profile);
   return (
     <>

@@ -39,7 +39,10 @@ nav button {
   color: white;
 }
 .login:hover {
-  background-color: #e3f2fd;
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+  color: white;
+  background-color: #086fd4;
 }
 .liright {
   float: right;

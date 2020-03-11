@@ -23,10 +23,8 @@
   color: white;
   background-color: #3f51b5;
 }
-.loginbutton {
-  width: 50%;
-}
-.buttonhover:hover {
-  color: black;
-  background-color: #9ba7f0;
+.buttoncolor:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  color: white;
 }

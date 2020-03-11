@@ -16,11 +16,11 @@ const Nav = props => {
         <li className="liright">
           {authenticated ? (
             <button className="btn login" onClick={logout}>
-              Log out
+              Log out >
             </button>
           ) : (
             <button className="btn login" onClick={login}>
-              Log in
+              Log in >
             </button>
           )}
         </li>
