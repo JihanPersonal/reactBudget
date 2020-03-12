@@ -1,17 +1,23 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 
-class Callback extends Component {
-  componentDidMount = () => {
-    // Handle authentication if expected values are in the URL.
-    if (/access_token|id_token|error/.test(this.props.location.hash)) {
-      this.props.auth.handleAuthentication();
+const Callback = props => {
+  useEffect(() => {
+    //Handle authentication if expected values are in the URL.
+    if (/access_token|id_token|error/.test(props.location.hash)) {
+      props.auth.handleAuthentication();
     } else {
       throw new Error("Invalid callback URL.");
     }
-  };
-  render() {
-    return <h1>Loading...</h1>;
-  }
-}
+  }, []);
+  return (
+    <>
+      <div className="text-center padtop">
+        <div className="spinner-border text-info" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default Callback;

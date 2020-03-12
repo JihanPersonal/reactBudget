@@ -49,7 +49,7 @@ const BudgetCalculator = props => {
             {values.errormessage}
           </FormHelperText>
         </FormControl>
-        <div className="output">
+        <div className="padtop">
           <FormControl fullWidth>
             <TextField
               id="outlined-basic"
@@ -59,7 +59,7 @@ const BudgetCalculator = props => {
             />
           </FormControl>
         </div>
-        <div className="output">
+        <div className="padtop">
           <FormControl fullWidth>
             <TextField
               id="outlined-basic"
@@ -70,7 +70,7 @@ const BudgetCalculator = props => {
             />
           </FormControl>
         </div>
-        <div className="text-right output">
+        <div className="text-right padtop">
           <button
             type="button"
             className="btn buttoncolor"
