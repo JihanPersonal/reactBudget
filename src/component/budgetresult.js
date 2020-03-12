@@ -7,9 +7,7 @@ const BudgetResult = props => {
     <>
       <div className="container">
         <div className="text-center header headerresult">
-          <Typography
-            center
-          >{`${props.username}! Here is your Result`}</Typography>
+          <Typography>{`${props.username}! Here is your Result`}</Typography>
         </div>
         <div className="padtop">
           <FormControl fullWidth>

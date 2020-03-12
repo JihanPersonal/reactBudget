@@ -50,7 +50,6 @@ const Budget = props => {
   };
   const handleback = () => {
     setdoneStatus(false);
-    setValues(values);
   };
   //#endregion
 

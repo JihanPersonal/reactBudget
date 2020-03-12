@@ -24,7 +24,7 @@ const BudgetCalculator = props => {
     <>
       <div className="container">
         <div className="text-center header largebottom">
-          <Typography center>Expense Percentage</Typography>
+          <Typography>Expense Percentage</Typography>
         </div>
         <Slider
           defaultValue={values.percent}
@@ -63,7 +63,6 @@ const BudgetCalculator = props => {
           <FormControl fullWidth>
             <TextField
               id="outlined-basic"
-              center="true"
               label="Saving"
               value={"$ " + values.saving}
               variant="outlined"
