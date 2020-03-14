@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../css/homepage.css";
+import logo from "../img/logo.png";
 const Home = props => {
   //#region Authentication Method
   const { isAuthenticated, login, getProfile } = props.auth;
@@ -18,6 +19,7 @@ const Home = props => {
   return (
     <div className="homecontainer" id="formContent">
       <div className="text-center header homeheader">
+        <img src={logo} alt="LOGO" className="logo" />
         {!authenticated ? (
           <h5>Please login first to use the Budget Calculator</h5>
         ) : (
