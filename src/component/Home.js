@@ -21,7 +21,7 @@ const Home = props => {
       <div className="text-center header homeheader">
         <img src={logo} alt="LOGO" className="logo" />
         {!authenticated ? (
-          <h5>Please login first to use the Budget Calculator</h5>
+          <h5>Login to use the Budget Calculator</h5>
         ) : (
           <h5>{`Welcome! ${props.username}`}</h5>
         )}
