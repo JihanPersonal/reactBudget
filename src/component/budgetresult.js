@@ -6,7 +6,7 @@ const BudgetResult = props => {
   return (
     <>
       <div className="container">
-        <div className="text-center header headerresult">
+        <div className="text-center header">
           <Typography>{`${props.username}! Here is your Result`}</Typography>
         </div>
         <div className="padtop">

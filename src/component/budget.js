@@ -37,7 +37,7 @@ const Budget = props => {
         let saving = (values.salary - expense).toFixed(2);
         setValues({
           ...values,
-          percent: value,
+          percent: value.toFixed(2),
           expense: expense,
           saving: saving
         });
