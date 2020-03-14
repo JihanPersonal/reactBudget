@@ -17,10 +17,9 @@ const Budget = props => {
   const handleChange = event => {
     let value = event.target.value;
     if (!isNaN(value)) {
-      let salary = value;
+      let salary = value.toFixed(2);
       let expense = ((salary * values.percent) / 100).toFixed(2);
       let saving = (salary - expense).toFixed(2);
-      console.log(saving);
       setValues({ salary: salary, expense: expense, saving: saving });
     } else {
       setValues({
@@ -37,7 +36,7 @@ const Budget = props => {
         let saving = (values.salary - expense).toFixed(2);
         setValues({
           ...values,
-          percent: value.toFixed(2),
+          percent: value,
           expense: expense,
           saving: saving
         });
