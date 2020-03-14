@@ -17,7 +17,7 @@ const Home = props => {
 
   return (
     <div className="homecontainer" id="formContent">
-      <div className="text-center header">
+      <div className="text-center header homeheader">
         {!authenticated ? (
           <h5>Please login first to use the Budget Calculator</h5>
         ) : (

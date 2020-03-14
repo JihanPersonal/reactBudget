@@ -24,8 +24,11 @@
 
 .header {
   color: #39ace7;
-  padding-top: 10%;
+  padding-top: 4%;
   padding-bottom: 4%;
+}
+.homeheader {
+  padding-top: 10%;
 }
 .largebottom {
   padding-bottom: 20%;
