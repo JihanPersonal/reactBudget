@@ -19,7 +19,6 @@ const BudgetCalculator = props => {
     { value: 15, label: "15%" },
     { value: 30, label: "30%" }
   ];
-
   return (
     <>
       <div className="container">

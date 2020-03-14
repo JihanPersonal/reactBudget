@@ -10,7 +10,7 @@ const Budget = props => {
     percent: 15,
     errormessage: ""
   });
-  const [donestatus, setdoneStatus] = useState(false);
+  const [doneStatus, setdoneStatus] = useState(false);
   //#endregion
 
   //#region Event Handlers
@@ -18,8 +18,9 @@ const Budget = props => {
     let value = event.target.value;
     if (!isNaN(value)) {
       let salary = value;
-      let expense = (salary * values.percent) / 100;
-      let saving = salary - expense;
+      let expense = ((salary * values.percent) / 100).toFixed(2);
+      let saving = (salary - expense).toFixed(2);
+      console.log(saving);
       setValues({ salary: salary, expense: expense, saving: saving });
     } else {
       setValues({
@@ -32,8 +33,8 @@ const Budget = props => {
   const percentageChange = value => {
     if (value !== values.percent) {
       if (values.salary !== "") {
-        let expense = (values.salary * value) / 100;
-        let saving = values.salary - expense;
+        let expense = ((values.salary * value) / 100).toFixed(2);
+        let saving = (values.salary - expense).toFixed(2);
         setValues({
           ...values,
           percent: value,
@@ -45,11 +46,19 @@ const Budget = props => {
       }
     }
   };
-  const handlesubmit = () => {
-    setdoneStatus(true);
-  };
-  const handleback = () => {
-    setdoneStatus(false);
+  const handleSubmit = isDoneCal => {
+    if (isDoneCal === true) {
+      if (values.salary === "") {
+        setValues({
+          ...values,
+          errormessage: "Please input your Salary first"
+        });
+      } else {
+        setdoneStatus(isDoneCal);
+      }
+    } else {
+      setdoneStatus(isDoneCal);
+    }
   };
   //#endregion
 
@@ -66,17 +75,17 @@ const Budget = props => {
   }
   //#endregion
 
-  return donestatus ? (
+  return doneStatus ? (
     <BudgetResult
       initialvalues={values}
       username={props.username}
-      handleback={handleback}
+      handleback={() => handleSubmit(false)}
     />
   ) : (
     <BudgetCalculator
       initialvalues={values}
       percentageChange={percentageChange}
-      handlesubmit={handlesubmit}
+      handlesubmit={() => handleSubmit(true)}
       handleChange={handleChange}
     />
   );
