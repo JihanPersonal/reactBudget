@@ -23,8 +23,8 @@
 }
 
 .header {
-  color: #405af1;
-  padding-top: 1%;
+  color: #39ace7;
+  padding-top: 10%;
   padding-bottom: 4%;
 }
 .largebottom {
@@ -35,7 +35,7 @@
 }
 .buttoncolor {
   color: white;
-  background-color: #3f51b5;
+  background-color: #39ace7;
 }
 .buttoncolor:hover {
   -webkit-transform: scale(1.1);

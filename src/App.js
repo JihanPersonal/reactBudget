@@ -6,7 +6,6 @@ import Nav from "./component/Nav";
 import Auth from "./component/Auth/Auth";
 import Callback from "./component/Callback";
 import Budget from "./component/budget";
-
 function App(props) {
   let auth0 = new Auth(props.history);
 

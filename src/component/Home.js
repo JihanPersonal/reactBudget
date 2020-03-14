@@ -16,8 +16,8 @@ const Home = props => {
   //#endregion
 
   return (
-    <div className="homecontainer">
-      <div className="text-center header headerresult">
+    <div className="homecontainer" id="formContent">
+      <div className="text-center header">
         {!authenticated ? (
           <h5>Please login first to use the Budget Calculator</h5>
         ) : (
@@ -25,16 +25,16 @@ const Home = props => {
         )}
       </div>
       {authenticated ? (
-        <div className="text-center gotobudget">
+        <div className="text-center gotobudget largebottom">
           <Link to="/budget">
-            <button className="btn buttoncolor">
+            <button className="btn buttoncolor ">
               Start to Calculate Budget
             </button>
           </Link>
         </div>
       ) : (
-        <div className="text-center gotobudget">
-          <button className="btn buttoncolor loginbutton" onClick={login}>
+        <div className="text-center gotobudget largebottom">
+          <button className="btn buttoncolor" onClick={login}>
             Login >
           </button>
         </div>
