@@ -2,19 +2,19 @@ import React from "react";
 import { FormControl, TextField, Typography } from "@material-ui/core";
 import "../css/slider.css";
 const BudgetResult = props => {
-  let values = props.initialvalues;
+  const { result, username, formatter, handleback } = props;
   return (
     <>
       <div className="container">
         <div className="text-center header">
-          <Typography>{`${props.username}! Here is your Result`}</Typography>
+          <Typography>{`${username}! Here is your Result`}</Typography>
         </div>
         <div className="padtop">
           <FormControl fullWidth>
             <TextField
               id="outlined-basic"
               label="Your Salary"
-              value={"$ " + values.salary}
+              value={formatter.format(result.salary)}
               variant="outlined"
             />
           </FormControl>
@@ -24,7 +24,7 @@ const BudgetResult = props => {
             <TextField
               id="outlined-basic"
               label="Your Expense %"
-              value={values.percent + "%"}
+              value={result.percent + "%"}
               variant="outlined"
             />
           </FormControl>
@@ -34,7 +34,7 @@ const BudgetResult = props => {
             <TextField
               id="outlined-basic"
               label="Your Expense"
-              value={"$ " + values.expense}
+              value={formatter.format(result.expense)}
               variant="outlined"
             />
           </FormControl>
@@ -44,7 +44,7 @@ const BudgetResult = props => {
             <TextField
               id="outlined-basic"
               label="Your Saving"
-              value={"$ " + values.saving}
+              value={formatter.format(result.saving)}
               variant="outlined"
             />
           </FormControl>
@@ -53,7 +53,7 @@ const BudgetResult = props => {
           <button
             type="button"
             className="btn buttoncolor"
-            onClick={props.handleback}
+            onClick={handleback}
           >
             Back to Calculator
           </button>

@@ -17,9 +17,9 @@ const Budget = props => {
   const handleChange = event => {
     let value = event.target.value;
     if (!isNaN(value)) {
-      let salary = value.toFixed(2);
-      let expense = ((salary * values.percent) / 100).toFixed(2);
-      let saving = (salary - expense).toFixed(2);
+      let salary = value;
+      let expense = (salary * values.percent) / 100;
+      let saving = salary - expense;
       setValues({ salary: salary, expense: expense, saving: saving });
     } else {
       setValues({
@@ -74,15 +74,21 @@ const Budget = props => {
   }
   //#endregion
 
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD"
+  });
   return doneStatus ? (
     <BudgetResult
-      initialvalues={values}
+      result={values}
       username={props.username}
+      formatter={formatter}
       handleback={() => handleSubmit(false)}
     />
   ) : (
     <BudgetCalculator
-      initialvalues={values}
+      values={values}
+      formatter={formatter}
       percentageChange={percentageChange}
       handlesubmit={() => handleSubmit(true)}
       handleChange={handleChange}

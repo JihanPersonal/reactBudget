@@ -11,7 +11,13 @@ import {
 } from "@material-ui/core";
 import "../css/slider.css";
 const BudgetCalculator = props => {
-  let values = props.initialvalues;
+  const {
+    values,
+    handlesubmit,
+    handleChange,
+    percentageChange,
+    formatter
+  } = props;
 
   //Slide Marks
   const marks = [
@@ -27,7 +33,7 @@ const BudgetCalculator = props => {
         </div>
         <Slider
           defaultValue={values.percent}
-          getAriaValueText={props.percentageChange}
+          getAriaValueText={percentageChange}
           aria-labelledby="discrete-slider-always"
           min={1}
           max={30}
@@ -40,8 +46,8 @@ const BudgetCalculator = props => {
           <Input
             id="standard-adornment-amount"
             name="salary"
-            value={props.initialvalues.salary}
-            onChange={props.handleChange}
+            value={values.salary}
+            onChange={handleChange}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
           />
           <FormHelperText error id="component-helper-text">
@@ -53,7 +59,7 @@ const BudgetCalculator = props => {
             <TextField
               id="outlined-basic"
               label="Expense"
-              value={"$ " + values.expense}
+              value={values.expense ? formatter.format(values.expense) : ""}
               variant="outlined"
             />
           </FormControl>
@@ -63,7 +69,7 @@ const BudgetCalculator = props => {
             <TextField
               id="outlined-basic"
               label="Saving"
-              value={"$ " + values.saving}
+              value={values.saving ? formatter.format(values.saving) : ""}
               variant="outlined"
             />
           </FormControl>
@@ -72,7 +78,7 @@ const BudgetCalculator = props => {
           <button
             type="button"
             className="btn buttoncolor"
-            onClick={props.handlesubmit}
+            onClick={handlesubmit}
           >
             Done Calculation
           </button>
