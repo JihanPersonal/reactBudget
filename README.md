@@ -43,8 +43,6 @@ You also need to change the homepage in package.json:
 You can reference this tutorial for more details for github page deployment:
 [https://create-react-app.dev/docs/deployment/](https://create-react-app.dev/docs/deployment/)
 
-I deployed this project to this github page for your reference: [http://juan3juan.github.io/budgetPlanner](http://juan3juan.github.io/budgetPlanner)
-
 ## Deploy to Heroku
 
 **Heroku is recommended since it handles client-side routing better and is easier to utilzie environment variables**
@@ -53,4 +51,4 @@ Please reference this tutorial for Heroku deployment: [https://blog.heroku.com/d
 
 **Notice:** you can delete the homepage in package.json since Heroku can run under root. <br />.env file can also be deleted since you can add env variables through Heroku Dashboard or CLI
 
-I also deployed this project to heroku for your reference: [https://budger-planner-heroku.herokuapp.com/](https://budger-planner-heroku.herokuapp.com/)
+I also deployed this project to heroku for your reference: [https://reactbudget.herokuapp.com/](https://reactbudget.herokuapp.com/)
