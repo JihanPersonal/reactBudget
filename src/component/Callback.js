@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import * as authAction from "../Redux/Actions/authAction";
+import { bindActionCreators } from "redux";
 const Callback = props => {
   useEffect(() => {
     //Handle authentication if expected values are in the URL.
     if (/access_token|id_token|error/.test(props.location.hash)) {
       props.auth.handleAuthentication();
-      props.dispatch(
-        authAction.createAuth({ ...props.auth, isAuthenticated: true })
-      );
+      //update auth as authenticated in Store
+      props.createAuth({
+        ...props.auth,
+        isAuthenticated: true
+      });
     } else {
       throw new Error("Invalid callback URL.");
     }
@@ -28,4 +31,9 @@ const mapStatetoProps = state => {
     auth: state.auth.auth
   };
 };
-export default connect(mapStatetoProps)(Callback);
+const mapActionstoProps = dispatch => {
+  return {
+    createAuth: bindActionCreators(authAction.createAuth, dispatch)
+  };
+};
+export default connect(mapStatetoProps, mapActionstoProps)(Callback);

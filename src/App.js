@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./component/Home";
@@ -11,42 +11,26 @@ import { bindActionCreators } from "redux";
 import * as authAction from "./Redux/Actions/authAction";
 function App(props) {
   let auth0 = new Auth(props.history);
-  const [profile, setProfile] = useState(null);
-  let username = "";
-  const setusername = () => {
-    if (profile) {
-      if (profile.given_name) username = profile.given_name;
-      else if (profile.nickname) username = profile.nickname;
-      else if (profile.name) username = profile.name;
-      props.dispatch(authAction.createUserName(username));
-    }
-  };
-  if (!props.userName || props.userName === "") {
-    setusername();
-    //props.dispatch(authAction.createUserName("Jihan"));
-  }
+
+  //#region Dispatch createAuth to add auth into Store
   if (!props.auth) {
-    props.dispatch(
-      authAction.createAuth({
-        login: () => {
-          auth0.login();
-        },
-        logout: () => {
-          auth0.logout();
-        },
-        isAuthenticated: auth0.isAuthenticated(),
-        handleAuthentication: () => {
-          auth0.handleAuthentication();
-        },
-        getProfile: cb => {
-          auth0.getProfile(cb);
-        },
-        setProfile: profile => {
-          setProfile(profile);
-        }
-      })
-    );
+    props.actions.createAuth({
+      login: () => {
+        auth0.login();
+      },
+      logout: () => {
+        auth0.logout();
+      },
+      isAuthenticated: auth0.isAuthenticated(),
+      handleAuthentication: () => {
+        auth0.handleAuthentication();
+      },
+      getProfile: cb => {
+        auth0.getProfile(cb);
+      }
+    });
   }
+  //#endregion
   return (
     <>
       <Nav />
@@ -63,10 +47,9 @@ function App(props) {
     </>
   );
 }
-const mapStatetoProps = (state, ownprops) => {
+const mapStatetoProps = state => {
   return {
-    auth: state.auth.auth,
-    userName: state.auth.userName
+    auth: state.auth.auth
   };
 };
 const mapActionstoProps = dispatch => {
@@ -74,4 +57,4 @@ const mapActionstoProps = dispatch => {
     actions: bindActionCreators(authAction, dispatch)
   };
 };
-export default connect(mapStatetoProps)(App);
+export default connect(mapStatetoProps, mapActionstoProps)(App);

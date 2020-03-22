@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 import "../css/homepage.css";
 import logo from "../img/logo.png";
 import { connect } from "react-redux";
-
+import { bindActionCreators } from "redux";
+import * as authAction from "../Redux/Actions/authAction";
 const Home = props => {
   //#region Authentication Method
-  const { isAuthenticated, login, getProfile, setProfile } = props.auth;
+  const { isAuthenticated, login, getProfile } = props.auth;
   //after authentication, get the username to App
   if (isAuthenticated) {
     if (props.userName === "") {
       getProfile((profile, err) => {
-        console.log("set profile from home");
-        console.log(props);
-        setProfile(profile);
+        //Dispatch createProfile to add profile into Store
+        props.createProfile(profile);
       });
     }
   }
@@ -53,4 +53,9 @@ const mapStatetoProps = (state, ownprops) => {
     userName: state.auth.userName
   };
 };
-export default connect(mapStatetoProps)(Home);
+const mapActionstoProps = dispatch => {
+  return {
+    createProfile: bindActionCreators(authAction.createProfile, dispatch)
+  };
+};
+export default connect(mapStatetoProps, mapActionstoProps)(Home);

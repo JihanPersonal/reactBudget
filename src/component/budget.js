@@ -62,18 +62,6 @@ const Budget = props => {
   };
   //#endregion
 
-  //#region Reget Username if somehow budget page lost username
-  const { isAuthenticated, getProfile } = props.auth;
-  //after authentication, get the username to App
-  if (isAuthenticated) {
-    if (props.userName === "") {
-      getProfile((profile, err) => {
-        props.setProfile(profile);
-      });
-    }
-  }
-  //#endregion
-
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD"
@@ -97,7 +85,6 @@ const Budget = props => {
 };
 const mapStatetoProps = state => {
   return {
-    auth: state.auth.auth,
     userName: state.auth.userName
   };
 };
