@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../css/navbar.css";
 import logo from "../img/logo.png";
+import { connect } from "react-redux";
 const Nav = props => {
   const { isAuthenticated, login, logout } = props.auth;
-  const authenticated = isAuthenticated();
   return (
     <nav>
       <ul>
@@ -18,7 +18,7 @@ const Nav = props => {
           <Link to="/budget">Budget</Link>
         </li>
         <li className="liright">
-          {authenticated ? (
+          {isAuthenticated ? (
             <button className="btn login" onClick={logout}>
               Log out >
             </button>
@@ -32,5 +32,9 @@ const Nav = props => {
     </nav>
   );
 };
-
-export default Nav;
+const mapStatetoProps = state => {
+  return {
+    auth: state.auth.auth
+  };
+};
+export default connect(mapStatetoProps)(Nav);

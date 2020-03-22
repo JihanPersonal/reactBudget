@@ -2,15 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../css/homepage.css";
 import logo from "../img/logo.png";
+import { connect } from "react-redux";
+
 const Home = props => {
   //#region Authentication Method
-  const { isAuthenticated, login, getProfile } = props.auth;
-  const authenticated = isAuthenticated();
+  const { isAuthenticated, login, getProfile, setProfile } = props.auth;
   //after authentication, get the username to App
-  if (authenticated) {
-    if (props.username === "") {
+  if (isAuthenticated) {
+    if (props.userName === "") {
       getProfile((profile, err) => {
-        props.setProfile(profile);
+        console.log("set profile from home");
+        console.log(props);
+        setProfile(profile);
       });
     }
   }
@@ -20,13 +23,13 @@ const Home = props => {
     <div className="homecontainer" id="formContent">
       <div className="text-center header homeheader">
         <img src={logo} alt="LOGO" className="logo" />
-        {!authenticated ? (
+        {!isAuthenticated ? (
           <h5>Login to use the Budget Calculator</h5>
         ) : (
-          <h5>{`Welcome! ${props.username}`}</h5>
+          <h5>{`Welcome! ${props.userName}`}</h5>
         )}
       </div>
-      {authenticated ? (
+      {isAuthenticated ? (
         <div className="text-center gotobudget largebottom">
           <Link to="/budget">
             <button className="btn buttoncolor ">
@@ -44,5 +47,10 @@ const Home = props => {
     </div>
   );
 };
-
-export default Home;
+const mapStatetoProps = (state, ownprops) => {
+  return {
+    auth: state.auth.auth,
+    userName: state.auth.userName
+  };
+};
+export default connect(mapStatetoProps)(Home);

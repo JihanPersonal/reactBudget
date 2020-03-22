@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import BudgetCalculator from "./budgetcalculator";
 import BudgetResult from "./budgetresult";
+import { connect } from "react-redux";
 const Budget = props => {
   //#region Use State
   const [values, setValues] = useState({
@@ -63,10 +64,9 @@ const Budget = props => {
 
   //#region Reget Username if somehow budget page lost username
   const { isAuthenticated, getProfile } = props.auth;
-  const authenticated = isAuthenticated();
   //after authentication, get the username to App
-  if (authenticated) {
-    if (props.username === "") {
+  if (isAuthenticated) {
+    if (props.userName === "") {
       getProfile((profile, err) => {
         props.setProfile(profile);
       });
@@ -81,7 +81,7 @@ const Budget = props => {
   return doneStatus ? (
     <BudgetResult
       result={values}
-      username={props.username}
+      username={props.userName}
       formatter={formatter}
       handleback={() => handleSubmit(false)}
     />
@@ -95,4 +95,10 @@ const Budget = props => {
     />
   );
 };
-export default Budget;
+const mapStatetoProps = state => {
+  return {
+    auth: state.auth.auth,
+    userName: state.auth.userName
+  };
+};
+export default connect(mapStatetoProps)(Budget);
