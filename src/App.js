@@ -3,7 +3,7 @@ import { Redirect, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./component/Home";
 import Nav from "./component/Nav";
-import Auth from "./component/Auth/Auth";
+import Auth from "./Auth/Auth";
 import Callback from "./component/Callback";
 import Budget from "./component/budget";
 function App(props) {
