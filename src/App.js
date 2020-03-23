@@ -7,7 +7,6 @@ import Auth from "./Auth/Auth";
 import Callback from "./component/Callback";
 import Budget from "./component/budget";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import * as authAction from "./Redux/Actions/authAction";
 function App(props) {
   //#region Dispatch createAuth to add auth into Store
@@ -33,7 +32,6 @@ function App(props) {
 
   return (
     <>
-      <p>{props.auth ? props.auth.isAuthenticated : null}</p>
       <Nav />
       <div className="body">
         <Route path="/" exact>
@@ -54,9 +52,7 @@ const mapStatetoProps = state => {
       : null
   };
 };
-const mapActionstoProps = dispatch => {
-  return {
-    createAuth: bindActionCreators(authAction.createAuth, dispatch)
-  };
+const mapActionstoProps = {
+  createAuth: authAction.createAuth
 };
 export default connect(mapStatetoProps, mapActionstoProps)(App);

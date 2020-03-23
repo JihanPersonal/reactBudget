@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import * as authAction from "../Redux/Actions/authAction";
-import { bindActionCreators } from "redux";
 const Callback = props => {
   useEffect(() => {
     //Handle authentication if expected values are in the URL.
@@ -31,9 +30,7 @@ const mapStatetoProps = state => {
     auth: state.authReducer.auth
   };
 };
-const mapActionstoProps = dispatch => {
-  return {
-    createAuth: bindActionCreators(authAction.createAuth, dispatch)
-  };
+const mapActionstoProps = {
+  createAuth: authAction.createAuth
 };
 export default connect(mapStatetoProps, mapActionstoProps)(Callback);

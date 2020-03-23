@@ -18,7 +18,6 @@ const BudgetCalculator = props => {
     percentageChange,
     formatter
   } = props;
-  console.log(props);
   //Slide Marks
   const marks = [
     { value: 1, label: "1%" },

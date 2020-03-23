@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "../css/homepage.css";
 import logo from "../img/logo.png";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import * as authAction from "../Redux/Actions/authAction";
 const Home = props => {
   //#region Authentication Method
@@ -47,15 +46,14 @@ const Home = props => {
     </div>
   );
 };
-const mapStatetoProps = (state, ownprops) => {
+const mapStatetoProps = state => {
   return {
     auth: state.authReducer.auth,
     userName: state.authReducer.userName
   };
 };
-const mapActionstoProps = dispatch => {
-  return {
-    createProfile: bindActionCreators(authAction.createProfile, dispatch)
-  };
+
+const mapActionstoProps = {
+  createProfile: authAction.createProfile
 };
 export default connect(mapStatetoProps, mapActionstoProps)(Home);
