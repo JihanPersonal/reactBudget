@@ -47,7 +47,7 @@ function App(props) {
   );
 }
 App.propTypes = {
-  isAuthenticated: PropTypes.string.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
   auth: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   createAuth: PropTypes.func.isRequired
