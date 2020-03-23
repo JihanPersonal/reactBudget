@@ -5,7 +5,8 @@ const authReducer = (
 ) => {
   switch (action.type) {
     case ActionTypes.CREATE_AUTH: {
-      return { ...state, auth: action.auth };
+      const newstate = { ...state, auth: action.auth };
+      return newstate;
     }
     case ActionTypes.CREATE_PROFILE: {
       let profile = action.profile;

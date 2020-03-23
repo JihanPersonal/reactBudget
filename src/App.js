@@ -10,11 +10,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as authAction from "./Redux/Actions/authAction";
 function App(props) {
-  let auth0 = new Auth(props.history);
-
   //#region Dispatch createAuth to add auth into Store
   if (!props.auth) {
-    props.actions.createAuth({
+    let auth0 = new Auth(props.history);
+    props.createAuth({
       login: () => {
         auth0.login();
       },
@@ -31,8 +30,10 @@ function App(props) {
     });
   }
   //#endregion
+
   return (
     <>
+      <p>{props.auth ? props.auth.isAuthenticated : null}</p>
       <Nav />
       <div className="body">
         <Route path="/" exact>
@@ -40,21 +41,22 @@ function App(props) {
         </Route>
         <Route path="/Callback" render={props => <Callback {...props} />} />
         <Route path="/budget">
-          {auth0.isAuthenticated() ? <Budget /> : <Redirect to="/" />}
+          {props.isAuthenticated ? <Budget /> : <Redirect to="/" />}
         </Route>
-        } />
       </div>
     </>
   );
 }
 const mapStatetoProps = state => {
   return {
-    auth: state.auth.auth
+    isAuthenticated: state.authReducer.auth
+      ? state.authReducer.auth.isAuthenticated
+      : null
   };
 };
 const mapActionstoProps = dispatch => {
   return {
-    actions: bindActionCreators(authAction, dispatch)
+    createAuth: bindActionCreators(authAction.createAuth, dispatch)
   };
 };
 export default connect(mapStatetoProps, mapActionstoProps)(App);

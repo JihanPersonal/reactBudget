@@ -28,7 +28,7 @@ const Callback = props => {
 };
 const mapStatetoProps = state => {
   return {
-    auth: state.auth.auth
+    auth: state.authReducer.auth
   };
 };
 const mapActionstoProps = dispatch => {

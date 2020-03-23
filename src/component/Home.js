@@ -49,8 +49,8 @@ const Home = props => {
 };
 const mapStatetoProps = (state, ownprops) => {
   return {
-    auth: state.auth.auth,
-    userName: state.auth.userName
+    auth: state.authReducer.auth,
+    userName: state.authReducer.userName
   };
 };
 const mapActionstoProps = dispatch => {

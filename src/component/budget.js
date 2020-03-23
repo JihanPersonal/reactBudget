@@ -85,7 +85,7 @@ const Budget = props => {
 };
 const mapStatetoProps = state => {
   return {
-    userName: state.auth.userName
+    userName: state.authReducer.userName
   };
 };
 export default connect(mapStatetoProps)(Budget);
