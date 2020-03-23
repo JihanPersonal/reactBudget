@@ -8,6 +8,7 @@ import Callback from "./component/Callback";
 import Budget from "./component/budget";
 import { connect } from "react-redux";
 import * as authAction from "./Redux/Actions/authAction";
+import { PropTypes } from "prop-types";
 function App(props) {
   //#region Dispatch createAuth to add auth into Store
   if (!props.auth) {
@@ -45,6 +46,12 @@ function App(props) {
     </>
   );
 }
+App.propTypes = {
+  isAuthenticated: PropTypes.string.isRequired,
+  auth: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  createAuth: PropTypes.func.isRequired
+};
 const mapStatetoProps = state => {
   return {
     isAuthenticated: state.authReducer.auth

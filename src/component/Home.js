@@ -4,6 +4,7 @@ import "../css/homepage.css";
 import logo from "../img/logo.png";
 import { connect } from "react-redux";
 import * as authAction from "../Redux/Actions/authAction";
+import { PropTypes } from "prop-types";
 const Home = props => {
   //#region Authentication Method
   const { isAuthenticated, login, getProfile } = props.auth;
@@ -39,12 +40,17 @@ const Home = props => {
       ) : (
         <div className="text-center gotobudget largebottom">
           <button className="btn buttoncolor" onClick={login}>
-            Login >
+            {"Login >"}
           </button>
         </div>
       )}
     </div>
   );
+};
+Home.propTypes = {
+  userName: PropTypes.string.isRequired,
+  auth: PropTypes.object.isRequired,
+  createProfile: PropTypes.func.isRequired
 };
 const mapStatetoProps = state => {
   return {

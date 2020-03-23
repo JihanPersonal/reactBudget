@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../css/navbar.css";
 import logo from "../img/logo.png";
 import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
 const Nav = props => {
   const { isAuthenticated, login, logout } = props.auth;
   return (
@@ -20,17 +21,20 @@ const Nav = props => {
         <li className="liright">
           {isAuthenticated ? (
             <button className="btn login" onClick={logout}>
-              Log out >
+              {"Log out >"}
             </button>
           ) : (
             <button className="btn login" onClick={login}>
-              Log in >
+              {"Log in >"}
             </button>
           )}
         </li>
       </ul>
     </nav>
   );
+};
+Nav.propTypes = {
+  auth: PropTypes.object.isRequired
 };
 const mapStatetoProps = state => {
   return {

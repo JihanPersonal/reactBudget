@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import * as authAction from "../Redux/Actions/authAction";
+import { PropTypes } from "prop-types";
 const Callback = props => {
   useEffect(() => {
     //Handle authentication if expected values are in the URL.
@@ -24,6 +25,11 @@ const Callback = props => {
       </div>
     </>
   );
+};
+Callback.propTypes = {
+  auth: PropTypes.object.isRequired,
+  createAuth: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired
 };
 const mapStatetoProps = state => {
   return {

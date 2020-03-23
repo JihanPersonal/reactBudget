@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { FormControl, TextField, Typography } from "@material-ui/core";
 import "../css/slider.css";

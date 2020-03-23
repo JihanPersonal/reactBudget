@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import BudgetCalculator from "./budgetcalculator";
 import BudgetResult from "./budgetresult";
 import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
 const Budget = props => {
   //#region Use State
   const [values, setValues] = useState({
@@ -82,6 +83,9 @@ const Budget = props => {
       handleChange={handleChange}
     />
   );
+};
+Budget.propTypes = {
+  userName: PropTypes.string.isRequired
 };
 const mapStatetoProps = state => {
   return {
